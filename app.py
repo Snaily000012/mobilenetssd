@@ -156,9 +156,9 @@ def event_handle(event):
         elif (msg == "เค้าเลิกกันแล้วไม่ใช่หรอ")  :
             replyObj = TextSendMessage(text="แกแรงมาก!! ตบปาก")
         else :
-             replyObj = TextSendMessage(text=msg)
+            replyObj = TextSendMessage(text=msg)
         line_bot_app.reply_message(rtoken, replyobj)    
-        elif msgType == "image":
+     elif msgType == "image":
         try:
             message_content = line_bot_api.get_message_content(event['message']['id'])
             i = Image.open(BytesIO(message_content.content))
