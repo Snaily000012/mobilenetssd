@@ -108,7 +108,7 @@ def callback():
     no_event = len(decoded['events'])
     for i in range(no_event):
             event = decoded['events'][i]
-            event_handle(event,jason_line)
+            event_handle(event,json_line)
 
     # เชื่อมต่อกับ dialogflow
     #intent = decoded["queryResult"]["intent"]["displayName"] 
@@ -147,7 +147,7 @@ def event_handle(event,jason_line):
         line_bot_api.reply_message(rtoken, replyObj)
         return ''
 
-    if msgType == "text":
+   if msgType == "text":
         msg = str(event["message"]["text"])
         if (msg == "สวัสดี") :
             replyObj = TextSendMessage(text="ว่าสาว")
@@ -170,7 +170,7 @@ def event_handle(event,jason_line):
             json_headers.update({'Host':'bots.dialogflow.com'})
             url = "https://dialogflow.cloud.google.com/v1/integrations/line/webhook/1ad9592c-8e7d-4f56-a588-384afdc02051"
             requests.post(url,data=json_line, headers=json_headers)
-     elif msgType == "image":
+    elif msgType == "image":
         try:
             message_content = line_bot_api.get_message_content(event['message']['id'])
             i = Image.open(BytesIO(message_content.content))
